@@ -1,0 +1,16 @@
+--- !ruby/object:VR_ENV
+settings_file_version: 1
+width: 681
+height: 743
+panel_pos: 133
+run_command_line: ruby main.rb
+open_files:
+- "/home/alex/visualruby/Chat/bin/MyClass.rb"
+- "/home/alex/visualruby/Chat/main.rb"
+open_folders:
+- "/home/alex/visualruby/Chat"
+- "/home/alex/visualruby/Chat/bin"
+- "/home/alex/visualruby/Chat/bin/glade"
+current_file: "/home/alex/visualruby/Chat/main.rb"
+rdoc_command_line: rdoc -x README
+builder: !ruby/object:Gtk::Builder {}
