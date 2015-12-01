@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.16.1 -->
 <interface>
-  <requires lib="gtk+" version="3.0"/>
+  <requires lib="gtk+" version="2.0"/>
   <object class="GtkWindow" id="window1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="modal">True</property>
-    <property name="window_position">center-always</property>
     <property name="default_width">300</property>
-    <property name="default_height">200</property>
+    <property name="default_height">198</property>
     <signal name="destroy" handler="destroy_window" swapped="no"/>
     <child>
       <object class="GtkFixed" id="fixed1">
@@ -27,18 +25,6 @@
           <packing>
             <property name="x">11</property>
             <property name="y">263</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkTextView" id="messages_text_view">
-            <property name="width_request">788</property>
-            <property name="height_request">243</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-          </object>
-          <packing>
-            <property name="x">12</property>
-            <property name="y">12</property>
           </packing>
         </child>
         <child>
@@ -65,6 +51,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="relief">half</property>
           </object>
           <packing>
             <property name="x">583</property>
@@ -132,7 +119,7 @@
           </object>
           <packing>
             <property name="x">635</property>
-            <property name="y">516</property>
+            <property name="y">499</property>
           </packing>
         </child>
         <child>
@@ -175,15 +162,15 @@
         <child>
           <object class="GtkButton" id="private_send_button">
             <property name="label" translatable="yes">Send</property>
-            <property name="width_request">62</property>
-            <property name="height_request">42</property>
+            <property name="width_request">63</property>
+            <property name="height_request">37</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
             <property name="x">142</property>
-            <property name="y">554</property>
+            <property name="y">556</property>
           </packing>
         </child>
         <child>
@@ -228,6 +215,87 @@
           <packing>
             <property name="x">14</property>
             <property name="y">304</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="panic_button">
+            <property name="label" translatable="yes">Panic!</property>
+            <property name="width_request">94</property>
+            <property name="height_request">37</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="xalign">0.50999999046325684</property>
+          </object>
+          <packing>
+            <property name="x">637</property>
+            <property name="y">540</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkTextView" id="messages_text_view">
+            <property name="width_request">781</property>
+            <property name="height_request">243</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="vscroll_policy">natural</property>
+            <property name="editable">False</property>
+            <property name="indent">2</property>
+          </object>
+          <packing>
+            <property name="x">12</property>
+            <property name="y">12</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="window2">
+    <property name="can_focus">False</property>
+    <property name="modal">True</property>
+    <property name="window_position">center-always</property>
+    <child>
+      <object class="GtkFixed" id="fixed2">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkEntry" id="my_name_input">
+            <property name="width_request">236</property>
+            <property name="height_request">29</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+          </object>
+          <packing>
+            <property name="x">96</property>
+            <property name="y">76</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label_name">
+            <property name="width_request">230</property>
+            <property name="height_request">30</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Enter with your name:</property>
+            <property name="ellipsize">start</property>
+          </object>
+          <packing>
+            <property name="x">99</property>
+            <property name="y">27</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="enter_name_button">
+            <property name="label" translatable="yes">Fine for me!</property>
+            <property name="width_request">178</property>
+            <property name="height_request">35</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="x">123</property>
+            <property name="y">129</property>
           </packing>
         </child>
       </object>
