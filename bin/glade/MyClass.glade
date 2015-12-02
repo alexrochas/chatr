@@ -203,21 +203,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkTreeView" id="treeview1">
-            <property name="width_request">224</property>
-            <property name="height_request">105</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <child internal-child="selection">
-              <object class="GtkTreeSelection" id="treeview-selection1"/>
-            </child>
-          </object>
-          <packing>
-            <property name="x">14</property>
-            <property name="y">304</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkButton" id="panic_button">
             <property name="label" translatable="yes">Panic!</property>
             <property name="width_request">94</property>
@@ -244,6 +229,22 @@
           <packing>
             <property name="x">12</property>
             <property name="y">12</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="participants_list">
+            <property name="width_request">222</property>
+            <property name="height_request">102</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="x">16</property>
+            <property name="y">303</property>
           </packing>
         </child>
       </object>

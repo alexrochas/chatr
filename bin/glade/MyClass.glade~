@@ -2,6 +2,17 @@
 <!-- Generated with glade 3.16.1 -->
 <interface>
   <requires lib="gtk+" version="2.0"/>
+  <object class="GtkListStore" id="participants_list">
+    <columns>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes"/>
+      </row>
+    </data>
+  </object>
   <object class="GtkWindow" id="window1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -208,6 +219,7 @@
             <property name="height_request">105</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="model">participants_list</property>
             <child internal-child="selection">
               <object class="GtkTreeSelection" id="treeview-selection1"/>
             </child>
@@ -238,7 +250,6 @@
             <property name="height_request">243</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="vscroll_policy">natural</property>
             <property name="editable">False</property>
             <property name="indent">2</property>
           </object>
