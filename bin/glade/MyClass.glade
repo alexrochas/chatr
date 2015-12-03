@@ -37,6 +37,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="use_action_appearance">False</property>
           </object>
           <packing>
             <property name="x">766</property>
@@ -51,6 +52,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="use_action_appearance">False</property>
             <property name="relief">half</property>
           </object>
           <packing>
@@ -124,6 +126,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="use_action_appearance">False</property>
           </object>
           <packing>
             <property name="x">635</property>
@@ -167,6 +170,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="use_action_appearance">False</property>
           </object>
           <packing>
             <property name="x">142</property>
@@ -181,22 +185,11 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="use_action_appearance">False</property>
           </object>
           <packing>
             <property name="x">206</property>
             <property name="y">555</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkTreeView" id="treeview2">
-            <property name="width_request">306</property>
-            <property name="height_request">278</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-          </object>
-          <packing>
-            <property name="x">271</property>
-            <property name="y">305</property>
           </packing>
         </child>
         <child>
@@ -207,6 +200,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="use_action_appearance">False</property>
             <property name="xalign">0.50999999046325684</property>
           </object>
           <packing>
@@ -264,6 +258,38 @@
             <property name="y">410</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkScrolledWindow" id="scrolledwindow2">
+            <property name="width_request">321</property>
+            <property name="height_request">242</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="hscrollbar_policy">automatic</property>
+            <property name="vscrollbar_policy">automatic</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="x">253</property>
+            <property name="y">304</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="join_button">
+            <property name="label" translatable="yes">button</property>
+            <property name="width_request">322</property>
+            <property name="height_request">38</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="use_action_appearance">False</property>
+          </object>
+          <packing>
+            <property name="x">252</property>
+            <property name="y">554</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>
@@ -313,6 +339,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="use_action_appearance">False</property>
           </object>
           <packing>
             <property name="x">123</property>
