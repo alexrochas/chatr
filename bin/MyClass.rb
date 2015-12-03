@@ -16,6 +16,12 @@ class MyClass
     @list_view = VR::ListView.new({:name => String})
     @builder['participants_list'].add(@list_view)
 
+		at_exit do
+			e = Logout.new
+			e.name = @name
+			send(e.to_json)
+		end
+
     t = Thread.new do
       socket = UDPSocket.new
 		  membership = IPAddr.new(MULTICAST_ADDR).hton + IPAddr.new(BIND_ADDR).hton
@@ -26,32 +32,36 @@ class MyClass
 		  socket.bind(BIND_ADDR, PORT)
 
       loop do
-        sleep(0.5)
+        sleep(5)
         to_remove = nil
         @list_view.each_row do |row|
           begin
             raise "Empty" unless !row.get_value(0).empty?
             q = Question.new
             q.name = row.get_value(0)
+						q.token = Random.new.seed
             send(q.to_json)
             puts "Waiting response"
             message = ""
-            (Timeout.timeout(1000) {message, _ = socket.recvfrom(255)})
-            puts "Receive response"
-            message = JSON.parse(message)
-            if message['type'] == 'answer'
-              a = Answer.from_json(message)
-              puts "Response ok for " + a.name
-            end
+            (Timeout.timeout(1000) {
+							loop do
+								message, _ = socket.recvfrom(255)
+								puts "Receive response"
+            		message = JSON.parse(message)
+            		if message['type'] == 'answer' and message['token'] == q.token
+              		a = Answer.from_json(message)
+              		puts "Response ok for " + a.name
+									break
+            		end
+							end
+						})
+
           rescue
             puts("Recv timed out for participant " + row.get_value(0))
             if !row.get_value(0).empty? and row.get_value(0) != @name
-              to_remove = row
+          		#@list_view.model.remove row
             end
           end
-        end
-        if to_remove != nil
-          #@list_view.remove to_remove
         end
       end
     end
@@ -71,20 +81,34 @@ class MyClass
 					puts "Waiting message"
 		      message, _ = socket.recvfrom(255)
 					message = JSON.parse(message)
-          puts message['type']
 					case message['type']
+					when 'private'
+						p = PrivateMessage.from_json(message)
+						if p.target == @name
+		     			@builder['private_text_view'].buffer.insert_at_cursor("\r\nFrom: " + p.name + "\r\n" + p.message)
+						end
 					when 'message'
 						m = Message.from_json(message)
 		     		@builder['messages_text_view'].buffer.insert_at_cursor("\r\nFrom: " + m.name + "\r\n" + m.message)
           when 'participant'
             p = Participant.from_json(message)
             register_participant(p)
+					when 'logout'
+            l = Logout.from_json(message)
+        		@list_view.each_row do |row|
+							if !row.get_value(0).empty? and row.get_value(0) != @name and row.get_value(0) == l.name
+          			@list_view.model.remove row
+            	end
+						end
+						puts "Logout for " + l.name
           when 'question'
+						puts "Question!!!"
             q = Question.from_json(message)
             puts @name
             if !@name.nil? and !@name.empty? and q.name == @name
               a = Answer.new
               a.name = @name
+							a.token = q.token
               send(a.to_json)
             else
               if !@name.nil? and !@name.empty?
@@ -140,6 +164,16 @@ class MyClass
     send(m.to_json)
 	end
 
+	def private_send_button__clicked(*args)
+		byebug
+		message = @builder["private_message_input"].text
+		m = PrivateMessage.new
+		m.message = message
+		m.target = @list_view.selection.selected.get_value(0)
+		m.name = @name
+    send(m.to_json)
+	end
+
   def send data
     socket = UDPSocket.open
 		socket.setsockopt(:IPPROTO_IP, :IP_MULTICAST_TTL, 1)
@@ -169,6 +203,28 @@ class Message
 	end
 end
 
+class PrivateMessage
+
+	attr_accessor :name, :message, :target
+
+	def self.from_json data
+		_self = self.new
+		_self.name = data['name']
+		_self.message = data['message']
+		_self.target = data['target']
+		_self
+	end
+
+	def to_json
+		{
+			'type' => 'private',
+			'name' => @name,
+			'target' => @target,
+			'message' => @message
+		}.to_json
+	end
+end
+
 class Participant
 
   attr_accessor :name
@@ -187,6 +243,23 @@ end
 
 class Question
 
+  attr_accessor :name, :token
+
+  def self.from_json data
+    _self = self.new
+    _self.name = data['name']
+		_self.token = data['token']
+    _self
+  end
+
+  def to_json
+    {'type' => 'question', 'name' => self.name, 'token' => self.token}.to_json
+  end
+
+end
+
+class Logout
+
   attr_accessor :name
 
   def self.from_json data
@@ -196,23 +269,24 @@ class Question
   end
 
   def to_json
-    {'type' => 'question', 'name' => self.name}.to_json
+    {'type' => 'logout', 'name' => self.name}.to_json
   end
 
 end
 
 class Answer
 
-  attr_accessor :name
+  attr_accessor :name, :token
 
   def self.from_json data
     _self = self.new
     _self.name = data['name']
+		_self.token = data['token']
     _self
   end
 
   def to_json
-    {'type' => 'answer', 'name' => self.name}.to_json
+    {'type' => 'answer', 'name' => self.name, 'token' => self.token}.to_json
   end
 
 end

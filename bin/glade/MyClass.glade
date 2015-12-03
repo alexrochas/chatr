@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.16.1 -->
 <interface>
-  <requires lib="gtk+" version="2.0"/>
+  <!-- interface-requires gtk+ 2.0 -->
+  <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkWindow" id="window1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -21,6 +21,8 @@
             <property name="invisible_char">●</property>
             <property name="primary_icon_activatable">False</property>
             <property name="secondary_icon_activatable">False</property>
+            <property name="primary_icon_sensitive">True</property>
+            <property name="secondary_icon_sensitive">True</property>
           </object>
           <packing>
             <property name="x">11</property>
@@ -30,7 +32,6 @@
         <child>
           <object class="GtkButton" id="delete_button">
             <property name="label" translatable="yes">X</property>
-            <property name="use_action_appearance">False</property>
             <property name="width_request">31</property>
             <property name="height_request">30</property>
             <property name="visible">True</property>
@@ -45,7 +46,6 @@
         <child>
           <object class="GtkButton" id="send_button">
             <property name="label" translatable="yes">Send</property>
-            <property name="use_action_appearance">False</property>
             <property name="width_request">175</property>
             <property name="height_request">30</property>
             <property name="visible">True</property>
@@ -64,6 +64,10 @@
             <property name="height_request">38</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="primary_icon_activatable">False</property>
+            <property name="secondary_icon_activatable">False</property>
+            <property name="primary_icon_sensitive">True</property>
+            <property name="secondary_icon_sensitive">True</property>
           </object>
           <packing>
             <property name="x">601</property>
@@ -89,6 +93,10 @@
             <property name="height_request">37</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="primary_icon_activatable">False</property>
+            <property name="secondary_icon_activatable">False</property>
+            <property name="primary_icon_sensitive">True</property>
+            <property name="secondary_icon_sensitive">True</property>
           </object>
           <packing>
             <property name="x">603</property>
@@ -136,23 +144,15 @@
           </packing>
         </child>
         <child>
-          <object class="GtkTextView" id="textview2">
-            <property name="width_request">226</property>
-            <property name="height_request">92</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-          </object>
-          <packing>
-            <property name="x">14</property>
-            <property name="y">420</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="entry2">
+          <object class="GtkEntry" id="private_message_input">
             <property name="width_request">225</property>
             <property name="height_request">37</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="primary_icon_activatable">False</property>
+            <property name="secondary_icon_activatable">False</property>
+            <property name="primary_icon_sensitive">True</property>
+            <property name="secondary_icon_sensitive">True</property>
           </object>
           <packing>
             <property name="x">14</property>
@@ -193,9 +193,6 @@
             <property name="height_request">278</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <child internal-child="selection">
-              <object class="GtkTreeSelection" id="treeview-selection2"/>
-            </child>
           </object>
           <packing>
             <property name="x">271</property>
@@ -247,6 +244,26 @@
             <property name="y">303</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkScrolledWindow" id="scrolledwindow1">
+            <property name="width_request">219</property>
+            <property name="height_request">97</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="hscrollbar_policy">automatic</property>
+            <property name="vscrollbar_policy">automatic</property>
+            <child>
+              <object class="GtkTextView" id="private_text_view">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">18</property>
+            <property name="y">410</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>
@@ -264,6 +281,10 @@
             <property name="height_request">29</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="primary_icon_activatable">False</property>
+            <property name="secondary_icon_activatable">False</property>
+            <property name="primary_icon_sensitive">True</property>
+            <property name="secondary_icon_sensitive">True</property>
           </object>
           <packing>
             <property name="x">96</property>
