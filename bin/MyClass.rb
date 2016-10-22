@@ -219,8 +219,12 @@ class MyClass
     send(r.to_json)
   end
 
+  def destroy_window
+
+  end
+
   def panic_button__clicked(*args)
-    destroy_window()
+    window1__destroy(*args)
   end
 
   def send_button__clicked(*args)
