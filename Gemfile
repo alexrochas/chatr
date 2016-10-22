@@ -1,1 +1,3 @@
-gem 'vrlib', '~> 1.0', '>= 1.0.19'
+source 'https://rubygems.org'
+
+gem 'visualruby', '~> 3.0', '>= 3.0.2'
